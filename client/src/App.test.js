@@ -1,9 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '@testing-library/react';
 import App from './App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+
+test('renders APP', () => {
+  render(<App />);
 });
+
+test('it checks for Women\'s World Cup', () => {
+  const { getByText } = render(<App/>);
+  getByText('Women\'s World Cup')
+})
+
+test('it checks for Player: Alex Morgan', () => {
+  const { getByText } = render(<App/>);
+  getByText(/players ranked by search interest/i)
+})
